@@ -1,5 +1,30 @@
 function count_same_elements(collection) {
-  //在这里写入代码
+  let result = [];
+  let countMap = new Map();
+  collection.forEach(num => {
+    let sub_count = 1;
+    if (num.includes('-') || num.includes(":")) {
+      const symbol = num.includes('-') ? '-' : ':';
+      const result = count_with_symbol(symbol, num);
+      sub_count = result.sub_count;
+      num = result.num;
+    }
+    if(num.includes("[")){
+      sub_count = parseInt(num.substring(num.indexOf('[') + 1, num.indexOf(']')));
+      num = num.substring(0, num.indexOf('['));
+    }
+    const default_count = (countMap.has(num)) ? countMap.get(num) : 0;
+    countMap.set(num, default_count + sub_count);
+  })
+  countMap.forEach((val, key) => {result.push({'name': key, 'summary': val})});
+  return result;
+}
+
+const count_with_symbol = (symbol, num) => {
+  let result = {};
+  result.sub_count = parseInt(num.substring(num.indexOf(symbol) + 1));
+  result.num = num.substring(0, num.indexOf(symbol));
+  return result;
 }
 
 module.exports = count_same_elements;
