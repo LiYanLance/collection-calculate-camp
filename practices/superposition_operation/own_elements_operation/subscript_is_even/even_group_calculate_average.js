@@ -1,31 +1,29 @@
 'use strict';
 
 const getAverage = arr => {
-  if(arr.length === 0) return 0;
+  if (arr.length === 0) return 0;
   return arr.reduce((a, b) => a + b, 0) / arr.length
 };
 
-var even_group_calculate_average = function(collection){
-  let evens = [];
-  collection.forEach((val, index) => {
-    if(index % 2 !== 0){
-      evens.push(val);
-    }
-  })
-  evens = evens.filter(i => i % 2 == 0);
-  if(evens.length === 0){
+var even_group_calculate_average = function (collection) {
+
+  let evens = collection.filter((val, index) => val % 2 === 0 && index % 2 !== 0);
+  if (evens.length === 0) {
     return [0];
   }
-  evens.sort((a, b) => a - b);
-  let max_length = ("" + evens[evens.length - 1]).length, result = [];
-  for(let len = 1; len <= max_length; len++){
-    let average = 0;
-    average = getAverage(evens.filter(even => ("" + even).length === len));
-    if(average !== 0){
-      result.push(average);
+  let counts = evens.reduce((acc, cur) => {
+    const cur_len = cur.toString().length;
+    if (cur_len in acc) {
+      acc[cur_len] += cur;
+      acc[cur_len + "count"]++;
+    } else {
+      acc[cur_len] = cur;
+      acc[cur_len + "count"] = 1;
     }
-  }
-  return result;
+    return acc;
+  }, {});
+  return Object.keys(counts).map(i => counts[i] / counts[i + "count"])
+    .filter((val, index, self) => index < self.length / 2);
 };
 
 module.exports = even_group_calculate_average;
