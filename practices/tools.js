@@ -22,11 +22,12 @@ const get_real_value = (str) => {
   return result;
 }
 
-tool.get_median = array => {
+tool.get_median = (array, round_method) => {
   let arr = array.concat();
   arr.sort((a, b) => a - b);
-  const median = arr[Math.floor(arr.length / 2)];
-  return arr.length % 2 === 0 ? (median + arr[Math.floor(arr.length / 2) - 1]) / 2 : median;
+  let median = arr[Math.floor(arr.length / 2)];
+  median = arr.length % 2 === 0 ? ((median + arr[Math.floor(arr.length / 2) - 1]) / 2) : median;
+  return round_method ? round_method(median) : median;
 }
 
 tool.get_count_map = collection => {
