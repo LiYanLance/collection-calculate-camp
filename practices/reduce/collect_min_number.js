@@ -1,7 +1,7 @@
 'use strict';
 
 function collect_min_number(collection) {
-  return collection.reduce((a, b) => a < b ? a : b);
+  return collection.reduce((min, num) => min < num ? min : num);
 }
 
 module.exports = collect_min_number;
