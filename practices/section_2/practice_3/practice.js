@@ -1,5 +1,4 @@
 function count_same_elements(collection) {
-  let result = [];
   let countMap = new Map();
   collection.forEach(num => {
     let sub_count = 1;
@@ -16,8 +15,7 @@ function count_same_elements(collection) {
     const default_count = (countMap.has(num)) ? countMap.get(num) : 0;
     countMap.set(num, default_count + sub_count);
   })
-  countMap.forEach((val, key) => {result.push({'name': key, 'summary': val})});
-  return result;
+  return Array.from(countMap).map(item => { return {'key': item[0], 'count': item[1]} });
 }
 
 const count_with_symbol = (symbol, num) => {
