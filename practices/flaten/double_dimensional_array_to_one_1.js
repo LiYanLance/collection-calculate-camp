@@ -1,7 +1,7 @@
 'use strict';
 
 function double_to_one(collection) {
-  return Array.prototype.concat.apply([], collection);
+  return [].concat(...collection);
 }
 
 module.exports = double_to_one;
