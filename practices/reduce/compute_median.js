@@ -1,6 +1,6 @@
 'use strict';
 
-const tool = require("../../practices/tools");
+const tool = require("../helper");
 
 function compute_median(collection) {
   return tool.get_median(collection);

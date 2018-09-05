@@ -1,6 +1,6 @@
 'use strict';
 
-const tool = require('../../practices/tools');
+const tool = require('../helper');
 
 function get_letter_interval_2(number_a, number_b) {
   let result = [...Array(Math.abs(number_a - number_b) + 1).keys()]

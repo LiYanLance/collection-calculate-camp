@@ -1,4 +1,4 @@
-const tool = require("../../../practices/tools")
+const tool = require("../../helper")
 
 function create_updated_collection(collection_a, object_b) {
   return Array.from(tool.get_count_map(collection_a)).map(item => {

@@ -1,4 +1,4 @@
-const tool = require("../../../practices/tools")
+const tool = require("../../helper")
 
 function count_same_elements(collection) {
   return Array.from(tool.get_count_map(collection))

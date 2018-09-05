@@ -1,6 +1,6 @@
 'use strict';
 
-const tool = require("../../../practices/tools")
+const tool = require("../../helper")
 
 function even_to_letter(collection) {
   return collection
